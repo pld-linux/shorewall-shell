@@ -7,7 +7,7 @@ License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/4.2/shorewall-%{version}/%{name}-%{version}.tgz
 URL:		http://www.shorewall.net/
-Requires(post,preun):	/sbin/chkconfig
+Requires	/sbin/chkconfig
 Requires:	bash
 Requires:	iproute2
 Requires:	iptables
@@ -40,6 +40,7 @@ Ten pakiet dostarcza kompilatora reguł shorewalla opartego na powłoce.
 %install
 rm -rf $RPM_BUILD_ROOT
 
+# TODO: try to avoid foreign scripts (intsall by hand)
 export PREFIX=$RPM_BUILD_ROOT ; \
 export OWNER=`id -n -u` ; \
 export GROUP=`id -n -g` ;\
@@ -50,6 +51,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%dir %{_usr}/share/%{name}
-%attr(755,root,root) %{_usr}/share/%{name}/compiler
-%{_usr}/share/%{name}/*
+%dir %{_datadir}/%{name}
+%attr(755,root,root) %{_datadir}/%{name}/compiler
+%{_datadir}/%{name}/*
